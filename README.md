@@ -2,7 +2,7 @@
 
 ## Demo
 See demo on github pages
-[React Fake Store](https://kamalheydari.github.io/react-store-fake-api/#/)
+[React Redux Fake Store](https://kamalheydari.github.io/react-redux-fake-store/)
 
 ![demo](demo.jpg)
 
