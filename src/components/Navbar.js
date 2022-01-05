@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import styled from "styled-components";
 
 import Screen from "../utils/Screen";
@@ -20,7 +20,6 @@ import { openSidebar } from "../redux/sidebar/sidebarAction";
 const Navbar = () => {
   const dispatch = useDispatch();
 
-  const { pathname } = useLocation();
   return (
     <Header>
       <div className="header-center">
@@ -31,9 +30,12 @@ const Navbar = () => {
           <ul>
             {links.map(({ id, url, text }) => (
               <li key={id}>
-                <Link to={url} className={url === pathname ? "active" : null}>
+                <NavLink
+                  to={url}
+                  className={({ isActive }) => (isActive ? "active" : null)}
+                >
                   {text}
-                </Link>
+                </NavLink>
               </li>
             ))}
           </ul>

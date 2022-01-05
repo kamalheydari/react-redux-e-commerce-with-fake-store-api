@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useLocation } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
 //? Icons
@@ -10,18 +10,16 @@ import { useSelector, useDispatch } from "react-redux";
 import { closeSidebar } from "../redux/sidebar/sidebarAction";
 
 const CartButtons = () => {
-  const { pathname } = useLocation();
-
   const dispatch = useDispatch();
   const { total_items } = useSelector((state) => state.cartState);
 
   return (
     <Wrapper>
-      <Link
+      <NavLink
         to="/cart"
         onClick={() => dispatch(closeSidebar())}
-        className={
-          pathname === "/cart" ? "cart__container active " : "cart__container"
+        className={({ isActive }) =>
+          isActive ? "cart__container active" : "cart__container"
         }
       >
         Cart
@@ -29,7 +27,7 @@ const CartButtons = () => {
           <FaShoppingCart />
           <span>{total_items}</span>
         </div>
-      </Link>
+      </NavLink>
     </Wrapper>
   );
 };

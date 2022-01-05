@@ -3,7 +3,7 @@ import { HashRouter as Router } from "react-router-dom";
 
 //? Components
 import { Navbar, Sidebar, Footer } from "./components";
-import Routes from "./routes/Routes";
+import ConfigRoutes from "./routes/ConfigRoutes";
 
 //? Redux
 import { fetchProducts } from "./redux/products/productsAction";
@@ -20,7 +20,7 @@ const App = () => {
     <Router>
       <Navbar />
       <Sidebar />
-      <Routes />
+      <ConfigRoutes />
       <Footer />
     </Router>
   );

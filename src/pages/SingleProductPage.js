@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Link, useHistory, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 
 import Screen from "../utils/Screen";
@@ -12,7 +12,7 @@ import { fetchSingleProduct } from "../redux/singleProduct/singleProductAction";
 import { Breadcrumb, Error, Loading, Stars, AddToCart } from "../components";
 
 const SingleProductPage = () => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const { id } = useParams();
 
   const dispatch = useDispatch();
@@ -31,7 +31,7 @@ const SingleProductPage = () => {
   useEffect(() => {
     if (error) {
       setTimeout(() => {
-        history.push("/");
+        navigate("/");
       }, 3000);
     }
   }, [error]);

@@ -1,4 +1,4 @@
-# React Fake Store 
+# React-Redux Fake Store 
 
 ## Demo
 See demo on github pages
@@ -9,5 +9,7 @@ See demo on github pages
 ## Using
 
 - react
+- Redux
+- Redux-thunk
 - styled-components
 - [FakeStoreApi](https://fakestoreapi.com/)
