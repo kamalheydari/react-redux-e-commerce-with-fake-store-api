@@ -4,17 +4,16 @@ import {
   GET_PRODUCTS_SUCCESS,
 } from "../../utils/actions";
 
-const getProductsBegin = () => {
-  return { type: GET_PRODUCTS_BEGIN };
-};
-const getProductsSuccess = (products) => {
-  return { type: GET_PRODUCTS_SUCCESS, payload: products };
-};
-const getProductsError = () => {
-  return { type: GET_PRODUCTS_ERROR };
-};
+const getProductsBegin = () => ({ type: GET_PRODUCTS_BEGIN });
 
-const fetchProducts = () => {
+const getProductsSuccess = (products) => ({
+  type: GET_PRODUCTS_SUCCESS,
+  payload: products,
+});
+
+const getProductsError = () => ({ type: GET_PRODUCTS_ERROR });
+
+export const fetchProducts = () => {
   return async (dispatch) => {
     dispatch(getProductsBegin());
     try {
@@ -26,5 +25,3 @@ const fetchProducts = () => {
     }
   };
 };
-
-export { fetchProducts };

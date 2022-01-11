@@ -9,11 +9,9 @@ import {
   LOAD_PRODUCTS,
 } from "../../utils/actions";
 
-const loadProducts = (payload) => {
-  return { type: LOAD_PRODUCTS, payload };
-};
+export const loadProducts = (payload) => ({ type: LOAD_PRODUCTS, payload });
 
-const updateFilters = (e) => {
+export const updateFilters = (e) => {
   let name = e.target.name;
   let value = e.target.value;
   if (name === "category") {
@@ -25,36 +23,17 @@ const updateFilters = (e) => {
   return { type: UPDATE_FILTERS, payload: { name, value } };
 };
 
-const filterProducts = () => {
-  return { type: FILTER_PRODUCTS };
-};
+export const filterProducts = () => ({ type: FILTER_PRODUCTS });
 
-const clearFilters = () => {
-  return { type: CLEAR_FILTERS };
-};
+export const clearFilters = () => ({ type: CLEAR_FILTERS });
 
-const setGridView = () => {
-  return { type: SET_GRID_VIEW };
-};
-const setListView = () => {
-  return { type: SET_LIST_VIEW };
-};
-const updateSort = (e) => {
+export const setGridView = () => ({ type: SET_GRID_VIEW });
+
+export const setListView = () => ({ type: SET_LIST_VIEW });
+
+export const updateSort = (e) => {
   const value = e.target.value;
   return { type: UPDATE_SORT, payload: value };
 };
 
-const sortProducts = () => {
-  return { type: SORT_PRODUCTS };
-};
-
-export {
-  loadProducts,
-  setGridView,
-  setListView,
-  updateSort,
-  updateFilters,
-  clearFilters,
-  filterProducts,
-  sortProducts,
-};
+export const sortProducts = () => ({ type: SORT_PRODUCTS });

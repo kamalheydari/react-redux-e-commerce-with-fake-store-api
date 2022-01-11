@@ -1,10 +1,5 @@
 import { OPEN_SIDEBAR, CLOSE_SIDEBAR } from "../../utils/actions";
 
-const openSidebar = () => {
-  return { type: OPEN_SIDEBAR };
-};
-const closeSidebar = () => {
-  return { type: CLOSE_SIDEBAR };
-};
+export const openSidebar = () => ({ type: OPEN_SIDEBAR });
 
-export { openSidebar, closeSidebar };
+export const closeSidebar = () => ({ type: CLOSE_SIDEBAR });

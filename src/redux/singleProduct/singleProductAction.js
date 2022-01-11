@@ -4,15 +4,14 @@ import {
   GET_SINGLE_PRODUCT_ERROR,
 } from "../../utils/actions";
 
-const getSingelProductBegin = () => {
-  return { type: GET_SINGLE_PRODUCT_BEGIN };
-};
-const getSingelProductSuccess = (payload) => {
-  return { type: GET_SINGLE_PRODUCT_SUCCESS, payload };
-};
-const getSingelProductError = () => {
-  return { type: GET_SINGLE_PRODUCT_ERROR };
-};
+const getSingelProductBegin = () => ({ type: GET_SINGLE_PRODUCT_BEGIN });
+
+const getSingelProductSuccess = (payload) => ({
+  type: GET_SINGLE_PRODUCT_SUCCESS,
+  payload,
+});
+
+const getSingelProductError = () => ({ type: GET_SINGLE_PRODUCT_ERROR });
 
 export const fetchSingleProduct = (params) => {
   return async (dispatch) => {

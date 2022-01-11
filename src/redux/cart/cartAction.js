@@ -7,35 +7,20 @@ import {
   CHECKOUT,
 } from "../../utils/actions";
 
-const countCartTotals = () => {
-  return { type: COUNT_CART_TOTALS };
-};
+export const countCartTotals = () => ({ type: COUNT_CART_TOTALS });
 
-const addToCart = (product, amount) => {
-  return { type: ADD_TO_CART, payload: { product, amount } };
-};
+export const addToCart = (product, amount) => ({
+  type: ADD_TO_CART,
+  payload: { product, amount },
+});
 
-const toggleAmount = (id, value) => {
-  return { type: TOGGLE_CART_ITEM, payload: { id, value } };
-};
+export const toggleAmount = (id, value) => ({
+  type: TOGGLE_CART_ITEM,
+  payload: { id, value },
+});
 
-const removeItem = (id) => {
-  return { type: REMOVE_CART_ITEM, payload: id };
-};
+export const removeItem = (id) => ({ type: REMOVE_CART_ITEM, payload: id });
 
-const clearCart = () => {
-  return { type: CLEAR_CART };
-};
+export const clearCart = () => ({ type: CLEAR_CART });
 
-const checkout = () => {
-  return { type: CHECKOUT };
-};
-
-export {
-  addToCart,
-  toggleAmount,
-  removeItem,
-  clearCart,
-  checkout,
-  countCartTotals,
-};
+export const checkout = () => ({ type: CHECKOUT });
