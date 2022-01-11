@@ -11,5 +11,6 @@ See demo on github pages
 - react
 - Redux
 - Redux-thunk
+- Redux-persist
 - styled-components
 - [FakeStoreApi](https://fakestoreapi.com/)
