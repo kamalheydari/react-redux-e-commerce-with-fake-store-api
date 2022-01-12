@@ -1,4 +1,4 @@
-import { OPEN_SIDEBAR, CLOSE_SIDEBAR } from "../../utils/actions";
+import { OPEN_SIDEBAR, CLOSE_SIDEBAR } from "./actions";
 
 export const openSidebar = () => ({ type: OPEN_SIDEBAR });
 

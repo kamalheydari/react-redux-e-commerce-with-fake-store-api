@@ -7,7 +7,7 @@ import {
   FILTER_PRODUCTS,
   SORT_PRODUCTS,
   LOAD_PRODUCTS,
-} from "../../utils/actions";
+} from "./actions";
 
 const initialState = {
   filtered_products: [],

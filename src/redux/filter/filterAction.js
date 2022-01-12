@@ -7,7 +7,7 @@ import {
   FILTER_PRODUCTS,
   SORT_PRODUCTS,
   LOAD_PRODUCTS,
-} from "../../utils/actions";
+} from "./actions";
 
 export const loadProducts = (payload) => ({ type: LOAD_PRODUCTS, payload });
 

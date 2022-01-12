@@ -2,7 +2,7 @@ import {
   GET_PRODUCTS_BEGIN,
   GET_PRODUCTS_ERROR,
   GET_PRODUCTS_SUCCESS,
-} from "../../utils/actions";
+} from "./actions";
 
 const getProductsBegin = () => ({ type: GET_PRODUCTS_BEGIN });
 

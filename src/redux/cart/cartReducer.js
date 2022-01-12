@@ -5,7 +5,7 @@ import {
   CLEAR_CART,
   COUNT_CART_TOTALS,
   CHECKOUT,
-} from "../../utils/actions";
+} from "./actions";
 
 const initialState = {
   cart: [],
