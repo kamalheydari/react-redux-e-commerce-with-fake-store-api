@@ -6,11 +6,11 @@ const sidebarReducer = (state = initialState, action) => {
   let { type } = action;
 
   if (type === OPEN_SIDEBAR) {
-    return { ...state, isSidebarOpen: true };
+    return { isSidebarOpen: true };
   }
 
   if (type === CLOSE_SIDEBAR) {
-    return { ...state, isSidebarOpen: false };
+    return { isSidebarOpen: false };
   }
   return state;
 };
