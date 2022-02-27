@@ -47,7 +47,7 @@ const Sidebar = () => {
                 <NavLink
                   className={({ isActive }) => (isActive ? "active" : null)}
                   to={url}
-                  onClick={closeSidebar}
+                  onClick={() => dispatch(closeSidebar())}
                 >
                   {text}
                 </NavLink>
