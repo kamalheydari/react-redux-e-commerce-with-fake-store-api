@@ -1,3 +1,4 @@
+import produce from "immer";
 import {
   ADD_TO_CART,
   REMOVE_CART_ITEM,
@@ -14,91 +15,81 @@ const initialState = {
   isCheckout: false,
 };
 
-const cartReducer = (state = initialState, action) => {
-  const { type, payload } = action;
+const cartReducer = (state = initialState, action) =>
+  produce(state, (draft) => {
+    let tempItem;
 
-  if (type === ADD_TO_CART) {
-    const { product, amount } = payload;
-    const tempItem = state.cart.find((item) => item.id === product.id);
-    if (tempItem) {
-      const tempCart = state.cart.map((item) => {
-        if (item.id === tempItem.id) {
-          let newAmount = item.amount + amount;
-          return { ...item, amount: newAmount };
+    switch (action.type) {
+      case ADD_TO_CART:
+        const { product, amount } = action.payload;
+        tempItem = draft.cart.find((item) => item.id === product.id);
+        if (tempItem) {
+          draft.cart[tempItem].amount += amount;
         } else {
-          return item;
+          const { id, title, image, price } = product;
+          draft.cart.push({ id, title, price, image, amount });
+          draft.isCheckout = false;
         }
-      });
-      return { ...state, cart: tempCart };
-    } else {
-      const { id, title, image, price } = product;
-      const newItem = {
-        id,
-        title,
-        image,
-        price,
-        amount,
-      };
-      return { ...state, cart: [...state.cart, newItem], isCheckout: false };
-    }
-  }
+        break;
 
-  if (type === TOGGLE_CART_ITEM) {
-    const { id, value } = payload;
-    const tempCart = state.cart.map((item) => {
-      if (item.id === id) {
+      case TOGGLE_CART_ITEM:
+        const { id, value } = action.payload;
+        tempItem = draft.cart.find((item) => item.id === id);
+
         if (value === "inc") {
-          let newAmount = item.amount + 1;
-          return { ...item, amount: newAmount };
+          let newAmount = tempItem.amount + 1;
+          tempItem.amount = newAmount;
         }
         if (value === "dec") {
-          let newAmount = item.amount - 1;
+          let newAmount = tempItem.amount - 1;
           if (newAmount < 1) {
             newAmount = 1;
           }
-          return { ...item, amount: newAmount };
+          tempItem.amount = newAmount;
         }
-      }
-      return item;
-    });
-    return { ...state, cart: tempCart };
-  }
+        break;
 
-  if (type === REMOVE_CART_ITEM) {
-    const tempCart = state.cart.filter((item) => item.id !== payload);
-    return { ...state, cart: tempCart };
-  }
+      case REMOVE_CART_ITEM:
+        const index = draft.cart.findIndex(
+          (item) => item.id === action.payload
+        );
+        if (index !== -1) {
+          draft.cart.splice(index, 1);
+        }
+        break;
 
-  if (type === CLEAR_CART) {
-    return { ...state, cart: [] };
-  }
+      case CLEAR_CART:
+        draft.cart = [];
+        break;
 
-  if (type === COUNT_CART_TOTALS) {
-    const { total_items, total_price } = state.cart.reduce(
-      (total, cartItem) => {
-        const { amount, price } = cartItem;
-        total.total_items += amount;
-        total.total_price += price * amount;
+      case COUNT_CART_TOTALS:
+        const { total_items, total_price } = draft.cart.reduce(
+          (total, cartItem) => {
+            const { amount, price } = cartItem;
+            total.total_items += amount;
+            total.total_price += price * amount;
 
-        return total;
-      },
-      {
-        total_price: 0,
-        total_items: 0,
-      }
-    );
-    return { ...state, total_items, total_price };
-  }
+            return total;
+          },
+          {
+            total_price: 0,
+            total_items: 0,
+          }
+        );
+        draft.total_items = total_items;
+        draft.total_price = total_price;
+        break;
 
-  if (type === CHECKOUT) {
-    return {
-      total_price: 0,
-      total_items: 0,
-      isCheckout: true,
-      cart: [],
-    };
-  }
+      case CHECKOUT:
+        draft.total_price = 0;
+        draft.total_items = 0;
+        draft.isCheckout = true;
+        draft.cart = [];
+        break;
 
-  return state;
-};
+      default:
+        break;
+    }
+  });
+
 export default cartReducer;

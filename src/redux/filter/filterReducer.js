@@ -1,3 +1,5 @@
+import produce from "immer";
+
 import {
   CLEAR_FILTERS,
   SET_GRID_VIEW,
@@ -23,93 +25,87 @@ const initialState = {
   },
 };
 
-const filterReducer = (state = initialState, action) => {
-  const { type, payload } = action;
-  if (type === LOAD_PRODUCTS) {
-    let maxPrice = payload.map((product) => product.price);
-    maxPrice = Math.max(...maxPrice);
+const filterReducer = (state = initialState, action) =>
+  produce(state, (draft) => {
+    let tempProducts;
 
-    return {
-      ...state,
-      all_products: [...payload],
-      filtered_products: [...payload],
-      filters: { ...state.filters, max_price: maxPrice, price: maxPrice },
-    };
-  }
+    switch (action.type) {
+      case LOAD_PRODUCTS:
+        let maxPrice = action.payload.map((product) => product.price);
+        maxPrice = Math.max(...maxPrice);
 
-  if (type === SET_GRID_VIEW) {
-    return { ...state, grid_view: true };
-  }
-  if (type === SET_LIST_VIEW) {
-    return { ...state, grid_view: false };
-  }
+        draft.all_products = action.payload;
+        draft.filtered_products = action.payload;
+        draft.filters.max_price = maxPrice;
+        draft.filters.price = maxPrice;
+        break;
 
-  if (type === UPDATE_SORT) {
-    return { ...state, sort: payload };
-  }
+      case SET_GRID_VIEW:
+        draft.grid_view = true;
+        break;
 
-  if (type === SORT_PRODUCTS) {
-    const { sort, filtered_products } = state;
-    let tempProducts = [...filtered_products];
-    if (sort === "price-lowest") {
-      tempProducts = tempProducts.sort((a, b) => a.price - b.price);
+      case SET_LIST_VIEW:
+        draft.grid_view = false;
+        break;
+
+      case UPDATE_SORT:
+        draft.sort = action.payload;
+        break;
+
+      case SORT_PRODUCTS:
+        const { sort } = draft;
+        tempProducts = [...draft.filtered_products];
+        if (sort === "price-lowest") {
+          tempProducts = tempProducts.sort((a, b) => a.price - b.price);
+        }
+        if (sort === "price-highest") {
+          tempProducts = tempProducts.sort((a, b) => b.price - a.price);
+        }
+        if (sort === "name-a") {
+          tempProducts = tempProducts.sort((a, b) =>
+            a.title.localeCompare(b.title)
+          );
+        }
+        if (sort === "name-z") {
+          tempProducts = tempProducts.sort((a, b) =>
+            b.title.localeCompare(a.title)
+          );
+        }
+        draft.filtered_products = tempProducts;
+        break;
+
+      case UPDATE_FILTERS:
+        draft.filters[action.payload.name] = action.payload.value;
+        break;
+
+      case FILTER_PRODUCTS:
+        const { text, category, price } = draft.filters;
+        tempProducts = [...draft.all_products];
+        if (text) {
+          tempProducts = tempProducts.filter((product) =>
+            product.title.toLowerCase().includes(text)
+          );
+        }
+
+        if (category !== "all") {
+          tempProducts = tempProducts.filter(
+            (product) => product.category === category
+          );
+        }
+
+        tempProducts = tempProducts.filter((product) => product.price <= price);
+        draft.filtered_products = tempProducts;
+        break;
+
+      case CLEAR_FILTERS:
+        draft.filters.text = "";
+        draft.filters.category = "all";
+        draft.filters.price = draft.filters.max_price;
+        break;
+
+      default:
+        break;
     }
-    if (sort === "price-highest") {
-      tempProducts = tempProducts.sort((a, b) => b.price - a.price);
-    }
-    if (sort === "name-a") {
-      tempProducts = tempProducts.sort((a, b) => {
-        return a.title.localeCompare(b.title);
-      });
-    }
-    if (sort === "name-z") {
-      tempProducts = tempProducts.sort((a, b) => {
-        return b.title.localeCompare(a.title);
-      });
-    }
-
-    return { ...state, filtered_products: tempProducts };
-  }
-
-  if (type === UPDATE_FILTERS) {
-    const { name, value } = payload;
-    return { ...state, filters: { ...state.filters, [name]: value } };
-  }
-
-  if (type === FILTER_PRODUCTS) {
-    const { all_products } = state;
-    const { text, category, price } = state.filters;
-    let tempProducts = [...all_products];
-    if (text) {
-      tempProducts = tempProducts.filter((product) =>
-        product.title.toLowerCase().includes(text)
-      );
-    }
-
-    if (category !== "all") {
-      tempProducts = tempProducts.filter(
-        (product) => product.category === category
-      );
-    }
-
-    tempProducts = tempProducts.filter((product) => product.price <= price);
-
-    return { ...state, filtered_products: tempProducts };
-  }
-
-  if (type === CLEAR_FILTERS) {
-    return {
-      ...state,
-      filters: {
-        ...state.filters,
-        text: "",
-        category: "all",
-        price: state.filters.max_price,
-      },
-    };
-  }
-
-  return state;
-};
+  });
 
 export default filterReducer;

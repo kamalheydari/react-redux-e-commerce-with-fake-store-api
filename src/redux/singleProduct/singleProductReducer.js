@@ -1,3 +1,4 @@
+import produce from "immer";
 import {
   GET_SINGLE_PRODUCT_BEGIN,
   GET_SINGLE_PRODUCT_SUCCESS,
@@ -14,30 +15,28 @@ const initialState = {
   single_product: {},
 };
 
-const singelProductReducer = (state = initialState, action) => {
-  let { type, payload } = action;
+const singelProductReducer = (state = initialState, action) =>
+  produce(state, (draft) => {
+    switch (action.type) {
+      case GET_SINGLE_PRODUCT_BEGIN:
+        draft.single_product_loading = true;
+        break;
 
-  if (type === GET_SINGLE_PRODUCT_BEGIN) {
-    return { ...state, single_product_loading: true };
-  }
+      case GET_SINGLE_PRODUCT_SUCCESS:
+        draft.single_product_loading = false;
+        draft.single_product = action.payload;
+        break;
 
-  if (type === GET_SINGLE_PRODUCT_SUCCESS) {
-    return {
-      ...state,
-      single_product_loading: false,
-      single_product: payload,
-    };
-  }
+      case GET_SINGLE_PRODUCT_ERROR:
+        draft.single_product_loading = false;
+        draft.single_product_error = true;
+        break;
 
-  if (type === GET_SINGLE_PRODUCT_ERROR) {
-    return {
-      ...state,
-      single_product_loading: false,
-      single_product_error: true,
-    };
-  }
+      default:
+        return draft;
+    }
+  });
 
-  return state;
-};
+
 
 export default singelProductReducer;

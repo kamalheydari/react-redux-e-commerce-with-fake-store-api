@@ -1,3 +1,5 @@
+import produce from "immer";
+
 import {
   GET_PRODUCTS_BEGIN,
   GET_PRODUCTS_ERROR,
@@ -11,31 +13,30 @@ const initialState = {
   popular_products: [],
 };
 
-const productsReducer = (state = initialState, action) => {
-  let { type, payload } = action;
+const productsReducer = (state = initialState, action) =>
+  produce(state, (draft) => {
+    switch (action.type) {
+      case GET_PRODUCTS_BEGIN:
+        draft.products_loading = true;
+        break;
 
-  if (type === GET_PRODUCTS_BEGIN) {
-    return { ...state, products_loading: true };
-  }
+      case GET_PRODUCTS_SUCCESS:
+        const popular_products = action.payload.filter(
+          (product) => product.rating.rate >= 4.5
+        );
+        draft.products_loading = false;
+        draft.products = action.payload;
+        draft.popular_products = popular_products;
+        break;
 
-  if (type === GET_PRODUCTS_SUCCESS) {
-    const popular_products = payload.filter(
-      (product) => product.rating.rate >= 4.5
-    );
+      case GET_PRODUCTS_ERROR:
+        draft.products_error = true;
+        draft.products_loading = false;
+        break;
 
-    return {
-      ...state,
-      products_loading: false,
-      products: payload,
-      popular_products,
-    };
-  }
-
-  if (type === GET_PRODUCTS_ERROR) {
-    return { ...state, products_loading: false, products_error: true };
-  }
-
-  return state;
-};
+      default:
+        return draft;
+    }
+  });
 
 export default productsReducer;
