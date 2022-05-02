@@ -10,6 +10,9 @@ import "./index.css";
 import { Provider } from "react-redux";
 import { persistor, store } from "./redux/store";
 
+/*? fonts */
+import '@fontsource/poppins'
+
 ReactDOM.render(
   <Provider store={store}>
     <PersistGate loading={null} persistor={persistor}>
