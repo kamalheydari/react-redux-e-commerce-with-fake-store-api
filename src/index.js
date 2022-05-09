@@ -9,9 +9,12 @@ import "./index.css";
 //? Redux
 import { Provider } from "react-redux";
 import { persistor, store } from "./redux/store";
+import { fetchProducts } from "./redux/products/productsAction";
 
 /*? fonts */
-import '@fontsource/poppins'
+import "@fontsource/poppins";
+
+store.dispatch(fetchProducts());
 
 ReactDOM.render(
   <Provider store={store}>
