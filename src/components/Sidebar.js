@@ -2,16 +2,13 @@ import React from "react";
 import styled from "styled-components";
 import { NavLink, Link } from "react-router-dom";
 
-import Screen from "../utils/Screen";
+import Screen from "../styles/Screen";
 
 //? Constantse
 import { links } from "../utils/constants";
 
-//? Icons
-import { FaTimes, FaStore } from "react-icons/fa";
-
 //? Components
-import { CartButtons } from ".";
+import { CartButtons, Icons } from ".";
 
 //? Redux
 import { useDispatch, useSelector } from "react-redux";
@@ -24,23 +21,15 @@ const Sidebar = () => {
   return (
     <Wrapper>
       <aside className={isSidebarOpen ? "show-sidebar sidebar" : "sidebar"}>
-        <div className="sidebar-header">
-          <Link
-            className="sidebar__logo"
-            to="/"
-            onClick={() => dispatch(closeSidebar())}
-          >
-            <FaStore />
+        <div className='sidebar-header'>
+          <Link to='/' onClick={() => dispatch(closeSidebar())}>
+            <Icons.FaStoreStyled />
           </Link>
-          <button
-            type="button"
-            onClick={() => dispatch(closeSidebar())}
-            className="sidebar__btn"
-          >
-            <FaTimes />
+          <button type='button' onClick={() => dispatch(closeSidebar())}>
+            <Icons.FaTimesStyled />
           </button>
         </div>
-        <nav className="sidebar__nav">
+        <nav className='sidebar__nav'>
           <ul>
             {links.map(({ id, url, text }) => (
               <li key={id}>
@@ -55,7 +44,7 @@ const Sidebar = () => {
             ))}
           </ul>
         </nav>
-        <div className="sidebar__cart">
+        <div className='sidebar__cart'>
           <CartButtons />
         </div>
       </aside>
@@ -98,7 +87,7 @@ const Wrapper = styled.div`
     a {
       display: block;
       padding: 1rem;
-      font-size: 1.8rem;
+      font-size: var(--fs-600);
       &:hover {
         padding-left: 1.5rem;
       }
@@ -110,16 +99,7 @@ const Wrapper = styled.div`
 
   .sidebar__cart {
     width: max-content;
-    margin: 0 auto;
-  }
-
-  .sidebar__btn {
-    color: var(--red-color-1);
-    font-size: 2.2rem;
-  }
-  .sidebar__logo {
-    font-size: 2.2rem;
-    color: var(--blue-color-1);
+    margin-inline: auto;
   }
 `;
 

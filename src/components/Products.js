@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 
 //? Components
-import { Loading, Error, GridProducts, ListProducts } from ".";
+import { Loading, Error, GridProducts, ListProducts, Typography } from ".";
 
 //? Redux
 import { useSelector, useDispatch } from "react-redux";
@@ -41,7 +41,9 @@ const Products = () => {
   }
 
   if (filtered_products.length < 1) {
-    return <h5>Sorry, no products matched your search...</h5>;
+    return (
+      <Typography.H4>Sorry, no products matched your search...</Typography.H4>
+    );
   }
 
   if (grid_view === false) {

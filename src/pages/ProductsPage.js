@@ -4,13 +4,14 @@ import styled from "styled-components";
 //? Components
 import { Breadcrumb, Filters, Products, Sort } from "../components";
 
-import Screen from "../utils/Screen";
+//? Helper
+import Screen from "../styles/Screen";
 
 const ProductsPage = () => {
   return (
     <main>
-      <Breadcrumb title="products" />
-      <Wrapper className="page">
+      <Breadcrumb title='products' />
+      <Wrapper className='page'>
         <Filters />
         <div>
           <Sort />
@@ -23,10 +24,10 @@ const ProductsPage = () => {
 
 const Wrapper = styled.section`
   padding: 1rem;
-  ${Screen.md`
+  ${Screen.lg`
   display: grid;
-  gap: 3rem 1.5rem;
-  grid-template-columns: 200px 1fr;
+  gap: 3rem 2rem;
+  grid-template-columns: 220px 1fr;
   `}
 `;
 

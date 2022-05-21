@@ -1,4 +1,11 @@
-/*? variables */
+import { createGlobalStyle } from "styled-components";
+import Screen from "./Screen";
+
+//?  fonts
+import "@fontsource/poppins";
+
+const GlobalStyle = createGlobalStyle`
+/* variables  */
 :root {
   /** colors */
   --blue-color-1: #345b63;
@@ -8,22 +15,33 @@
   --bg-color: #9ab7f515;
   --red-color-1: #da0037;
   --green-color-1: #519872;
-  --yellow-color-1: #ffcc1d;
-  --gray-color-1: #423f3ede;
+  --yellow-color-1: #ffff00;
+  --gray-color-1: rgb(107,114,128);
   --white-color: #fff;
 
   /** sizes */
-  --max-width: 1124px;
-  --header-height: 5rem;
+  --max-width: 1300px;
+  --header-height: 6rem;
   --footer-height: 5rem;
   --breadcrumb-height: 5rem;
 
   /** styles */
   --transition: 0.3s;
-  --radius: 0.2rem;
+  --radius: 0.35rem;
+
+
+  /* font-sizes */
+  --fs-900: 9.375rem;
+  --fs-800: 3rem;
+  --fs-700: 2.5rem;
+  --fs-600: 2rem;
+  --fs-500: 1.75rem;
+  --fs-400: 1.425rem;
+  --fs-300: 1rem;
+  --fs-200: 0.875rem;
 }
 
-/*? resets */
+/* resets */
 * {
   padding: 0;
   margin: 0;
@@ -52,51 +70,25 @@ button {
 /*? typographi */
 html {
   font-size: 0.562rem;
-}
 
-@media (min-width: 576px) {
-  html {
-    font-size: 0.625rem;
-  }
-}
-@media (min-width: 768px) {
-  html {
+  ${Screen.sm`
     font-size: 0.687rem;
-  }
-}
-@media (min-width: 992px) {
-  html {
+  `}
+
+  ${Screen.md`
     font-size: 0.75rem;
-  }
+  `}
+
+  ${Screen.lg`
+    font-size: 0.75rem;
+  `}
 }
 
-h1 {
-  font-size: 2.4rem;
-}
-h2 {
-  font-size: 2rem;
-}
-h3 {
-  font-size: 1.3rem;
-}
-h4 {
-  font-size: 1.7rem;
-}
-h5 {
-  font-size: 1.5rem;
-}
-p {
-  font-size: 1.3rem;
-}
-a {
-  font-size: 1.5rem;
-}
 
 /*? global styles */
 
 body {
   background: var(--bg-color);
-  color: var(--gray-color-1);
   overflow-x: hidden;
   font-family: "Poppins", sans-serif;
 }
@@ -108,7 +100,7 @@ img {
 
 section {
   width: min(100%, var(--max-width));
-  margin: 0 auto;
+  margin-inline:  auto;
 }
 main {
   margin-top: var(--header-height);
@@ -133,3 +125,8 @@ a:hover {
   margin-top: var(--header-height);
   min-height: calc(100vh - (var(--header-height) + var(--footer-height)));
 }
+
+
+`;
+
+export default GlobalStyle;

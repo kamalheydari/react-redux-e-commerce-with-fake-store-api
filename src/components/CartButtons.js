@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
 //? Icons
-import { FaShoppingCart } from "react-icons/fa";
+import { Icons } from ".";
 
 //? Redux
 import { useSelector, useDispatch } from "react-redux";
@@ -24,7 +24,7 @@ const CartButtons = () => {
       >
         Cart
         <div className="cart-icon">
-          <FaShoppingCart />
+        <Icons.FaShoppingCartStyled />
           <span>{total_items}</span>
         </div>
       </NavLink>
@@ -36,20 +36,25 @@ const Wrapper = styled.div`
   display: flex;
   align-items: center;
 
+  a {
+    font-size: var(--fs-500);
+  }
+
   .cart__container {
     display: flex;
     margin-right: 3rem;
-    border-bottom: 0.2rem solid transparent;
+    border-bottom: 0.3rem solid transparent;
     @media (max-width: 768px) {
       font-size: 2rem;
     }
   }
+
   .active {
     border-color: var(--red-color-1);
   }
+  
   .cart-icon {
     position: relative;
-    color: var(--blue-color-1);
     margin-left: 0.4rem;
 
     span {
@@ -66,11 +71,6 @@ const Wrapper = styled.div`
       align-items: center;
       justify-content: center;
     }
-  }
-
-  .cart__auth {
-    font-size: 1.3rem;
-    color: var(--green-color-3);
   }
 `;
 

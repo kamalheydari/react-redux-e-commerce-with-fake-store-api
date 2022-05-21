@@ -1,10 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 
-import Screen from "../utils/Screen";
+import Screen from "../styles/Screen";
 
-//? Icons
-import { BsFillGridFill, BsList } from "react-icons/bs";
+//? Components
+import { Typography, Icons } from ".";
 
 //? Redux
 import { useSelector, useDispatch } from "react-redux";
@@ -28,22 +28,22 @@ const Sort = () => {
           onClick={() => dispatch(setGridView())}
           className={grid_view ? "active" : null}
         >
-          <BsFillGridFill />
+          <Icons.BsFillGridFillStyled />
         </button>
         <button
           type="button"
           onClick={() => dispatch(setListView())}
           className={!grid_view ? "active" : null}
         >
-          <BsList />
+           <Icons.BsListStyled />
         </button>
       </div>
-      <p className="sort__items">
+      <Typography.P className='sort__items'>
         <span>{products.length}</span> products found
-      </p>
-      <hr />
+      </Typography.P>
+      <div className='sort__line' />
       <form className="sort__form">
-        <label htmlFor="sort">sort by</label>
+        <label htmlFor="sort">sort by :</label>
         <select
           name="sort"
           id="sort"
@@ -62,14 +62,13 @@ const Sort = () => {
 };
 
 const Wrapper = styled.div`
-  display: grid;
-  grid-template-columns: auto auto 1fr auto;
+  display: flex;
   align-items: center;
+  gap: 1rem;
   margin-bottom: 2rem;
-  gap: 0 0.1rem;
   ${Screen.sm`
         gap:0 1rem;
-      `}
+    `}
 
   .sort__btns {
     display: flex;
@@ -88,32 +87,46 @@ const Wrapper = styled.div`
         padding: 0.5rem;
       `}
     }
-    svg {
-      font-size: 1.4rem;
-      color: var(--blue-color-1);
-    }
   }
+
   .sort__items {
-    font-size: 0.9rem;
+    font-size: 1.5rem;
     span {
       display: inline-block;
       min-width: 2rem;
       text-align: center;
+      color: var(--blue-color-1);
     }
   }
-  hr {
-    border-bottom: 0.2rem solid var(--red-color-1);
+
+  .sort__line {
+    background-color: var(--red-color-1);
+    height: 0.3rem;
+    width: 30%;
+    display: none;
+    margin-inline: auto;
+
+    ${Screen.lg`
+    display: inline-block;
+    `}
+    ${Screen.xl`
+    width:40%;
+    `}
   }
+
   .sort__form {
+    margin-left: auto;
     label {
       margin-right: 0.2rem;
+      font-size: var(--fs-400);
     }
     option {
-      font-size: 1rem;
-      padding: 0 0.5rem;
+      font-size: var(--fs-600);
+      padding: 1rem;
       background: var(--bg-color);
     }
   }
+
   .active {
     border: 0.2rem solid var(--green-color-1);
     border-radius: 0.3rem;

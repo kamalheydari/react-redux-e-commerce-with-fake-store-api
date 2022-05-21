@@ -5,18 +5,21 @@ import styled from "styled-components";
 //? Image
 import heroImg from "../assets/hero_img.png";
 
+//? Components
+import { Typography, Button } from ".";
+
 const Hero = () => {
   return (
     <Wrapper>
-      <div className="home__hero">
-        <h1 className="hero__title">
+      <div className='hero'>
+        <Typography.H1 className='hero__title'>
           <span>Everything</span> <br /> you need to be good looking
-        </h1>
-        <Link to="/products" className="header__link ">
-          Shop Now
-        </Link>
-        <div className="hero__img">
-          <img src={heroImg} alt="hero - img" />
+        </Typography.H1>
+        <Button variant='primary' className='header__link'>
+          <Link to='/products'>Shop Now</Link>
+        </Button>
+        <div className='hero__img'>
+          <img src={heroImg} alt='hero - img' />
         </div>
       </div>
     </Wrapper>
@@ -25,14 +28,15 @@ const Hero = () => {
 
 const Wrapper = styled.section`
   overflow: hidden;
-  .home__hero {
-    background: var(--blue-color-2);
+
+  .hero {
     padding: 0 1rem 0 2rem;
     display: flex;
     justify-content: space-between;
     flex-direction: column;
     gap: 1rem;
   }
+
   .hero__title {
     align-self: flex-start;
     margin-top: 10vh;
@@ -50,20 +54,16 @@ const Wrapper = styled.section`
       width: 12rem;
       height: 12rem;
       border-radius: 50%;
-      background: yellow;
+      background: var(--yellow-color-1);
       z-index: -1;
     }
   }
+
   .header__link {
     width: max-content;
-    padding: 0.3rem 0.6rem;
-    border: 0.2rem solid var(--green-color-1);
-    border-radius: var(--radius);
     z-index: 1;
-    &:hover {
-      background: var(--white-color);
-    }
   }
+
   .hero__img {
     width: min(90%, 480px);
     align-self: flex-end;

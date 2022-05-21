@@ -2,7 +2,11 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-import Screen from "../utils/Screen";
+//? Helper
+import Screen from "../styles/Screen";
+
+//? Components
+import { Typography } from "../components";
 
 //? Redux
 import { useDispatch, useSelector } from "react-redux";
@@ -15,12 +19,13 @@ const CartTotals = () => {
   return (
     <Wrapper>
       <div>
-        <h5 className="total__items">
+      <Typography.H3 className='total__items'>
           Total Items : <span>{total_items}</span>
-        </h5>
-        <h4 className="total__price">
+        </Typography.H3>
+        <br />
+        <Typography.H4 className='total__price'>
           Total Price : <span>${total_price.toFixed(2)}</span>
-        </h4>
+        </Typography.H4>
       </div>
       <hr />
       <Link
@@ -39,31 +44,36 @@ const Wrapper = styled.article`
   border: 0.2rem solid var(--green-color-1);
   border-radius: var(--radius);
   padding: 1rem 1.5rem;
+
   ${Screen.lg`
-  width: 100%;
   align-self: flex-start;
-  
     `}
+
   .total__items {
     span {
       color: var(--blue-color-1);
       display: inline-block;
       text-align: center;
       width: 12rem;
+      font-size: var(--fs-600);
     }
   }
+
   .total__price {
     span {
       color: var(--red-color-1);
       display: inline-block;
       text-align: center;
+      font-size: var(--fs-600);
       width: 12rem;
     }
   }
+
   hr {
     border-bottom: 0.2rem solid var(--red-color-1);
-    margin: 1rem 0;
+    margin: 1.5rem 0;
   }
+
   .total__btn {
     background: var(--green-color-1);
     width: 100%;

@@ -2,16 +2,14 @@ import React from "react";
 import { Link, NavLink } from "react-router-dom";
 import styled from "styled-components";
 
-import Screen from "../utils/Screen";
+//? Helper
+import Screen from "../styles/Screen";
 
 //? Constants
 import { links } from "../utils/constants";
 
 //? Components
-import { CartButtons } from ".";
-
-//? Icons
-import { FaBars, FaStore } from "react-icons/fa";
+import { CartButtons, Icons } from ".";
 
 //? Redux
 import { useDispatch } from "react-redux";
@@ -22,11 +20,11 @@ const Navbar = () => {
 
   return (
     <Header>
-      <div className="header-center">
-        <Link to="/" className="header__logo">
-          <FaStore />
+      <div className='header-center'>
+        <Link to='/'>
+          <Icons.FaStoreStyled />
         </Link>
-        <nav className="header__nav">
+        <nav className='header__nav'>
           <ul>
             {links.map(({ id, url, text }) => (
               <li key={id}>
@@ -40,15 +38,15 @@ const Navbar = () => {
             ))}
           </ul>
         </nav>
-        <div className="header__cart">
+        <div className='header__cart'>
           <CartButtons />
         </div>
         <button
-          type="button"
+          type='button'
           onClick={() => dispatch(openSidebar())}
-          className="header__btn"
+          className='header__btn'
         >
-          <FaBars />
+          <Icons.FaBarsStyled />
         </button>
       </div>
     </Header>
@@ -59,7 +57,7 @@ const Header = styled.header`
   height: var(--header-height);
   display: flex;
   align-items: center;
-  padding: 0 2rem;
+  padding-inline: 2rem;
   box-shadow: 0 0 1rem 1rem var(--bg-color);
   position: fixed;
   background: var(--blue-color-2);
@@ -70,20 +68,13 @@ const Header = styled.header`
 
   .header-center {
     width: min(100%, var(--max-width));
-    margin: 0 auto;
+    margin-inline: auto;
     display: flex;
     align-items: center;
     justify-content: space-between;
   }
 
-  .header__logo {
-    font-size: 2.2rem;
-    color: var(--blue-color-1);
-  }
-
   .header__btn {
-    font-size: 2.2rem;
-    color: var(--green-color-1);
     ${Screen.md`
       display:none;
       `}
@@ -91,18 +82,21 @@ const Header = styled.header`
 
   .header__nav {
     display: none;
-    width: 35%;
     ${Screen.md`
       display:inline-block;
       `}
+
     ul {
-      display: flex;
-      justify-content: space-between;
+      display: inline-flex;
+      gap: 2.5rem;
+
       a {
         display: inline-block;
+        font-size: var(--fs-500);
         padding: 0.2rem;
-        border-bottom: 0.2rem solid transparent;
+        border-bottom: 0.3rem solid transparent;
       }
+
       .active {
         border-bottom-color: var(--red-color-1);
       }
