@@ -19,7 +19,7 @@ const ListProducts = ({ products }) => {
           <div className='product__info'>
             <Typography.H3>{title}</Typography.H3>
             <p className='price'>${price}</p>
-            <Typography.P>{truncate(description, 120)}</Typography.P>
+            <Typography.P>{truncate(description,120)}</Typography.P>
             <Button variant='primary'>
               <Link to={`/products/${id}`}>Details</Link>
             </Button>
@@ -46,7 +46,8 @@ const Wrapper = styled.div`
     }
 
     img {
-      max-width: 14rem;
+      width:min( 25vw,220px);
+      height: 20rem;
       object-fit: contain;
     }
 

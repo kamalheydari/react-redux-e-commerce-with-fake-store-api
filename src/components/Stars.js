@@ -27,7 +27,7 @@ const Stars = ({ stars = { rate: "" } }) => {
 const Wrapper = styled.div`
   span {
     font-size: 1.4rem;
-    color: var(--yellow-color-1);
+    color: var(--yellow-color-2);
     font-size: 1.4rem;
     margin-inline: 0.1rem;
   }
