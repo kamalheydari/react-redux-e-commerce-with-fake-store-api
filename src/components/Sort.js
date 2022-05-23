@@ -22,39 +22,39 @@ const Sort = () => {
   const dispatch = useDispatch();
   return (
     <Wrapper>
-      <div className="sort__btns">
+      <div className='sort__btns'>
         <button
-          type="button"
+          type='button'
           onClick={() => dispatch(setGridView())}
           className={grid_view ? "active" : null}
         >
           <Icons.BsFillGridFillStyled />
         </button>
         <button
-          type="button"
+          type='button'
           onClick={() => dispatch(setListView())}
           className={!grid_view ? "active" : null}
         >
-           <Icons.BsListStyled />
+          <Icons.BsListStyled />
         </button>
       </div>
       <Typography.P className='sort__items'>
-        <span>{products.length}</span> products found
+        <span>{products.length}</span> items found
       </Typography.P>
       <div className='sort__line' />
-      <form className="sort__form">
-        <label htmlFor="sort">sort by :</label>
+      <form className='sort__form'>
+        <label htmlFor='sort'>sort by :</label>
         <select
-          name="sort"
-          id="sort"
-          className="sort__input"
+          name='sort'
+          id='sort'
+          className='sort__input'
           value={sort}
           onChange={(e) => dispatch(updateSort(e))}
         >
-          <option value="price-lowest">price (lowest)</option>
-          <option value="price-highest">price (highest)</option>
-          <option value="name-a">name (a-z)</option>
-          <option value="name-z">name (z-a)</option>
+          <option value='price-lowest'>price (lowest)</option>
+          <option value='price-highest'>price (highest)</option>
+          <option value='name-a'>name (a-z)</option>
+          <option value='name-z'>name (z-a)</option>
         </select>
       </form>
     </Wrapper>
@@ -64,7 +64,6 @@ const Sort = () => {
 const Wrapper = styled.div`
   display: flex;
   align-items: center;
-  gap: 1rem;
   margin-bottom: 2rem;
   ${Screen.sm`
         gap:0 1rem;
