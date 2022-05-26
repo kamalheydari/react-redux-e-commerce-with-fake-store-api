@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.js": "/react-redux-fake-store/static/js/main.59ad399c.chunk.js",
-    "main.js.map": "/react-redux-fake-store/static/js/main.59ad399c.chunk.js.map",
-    "runtime-main.js": "/react-redux-fake-store/static/js/runtime-main.ad21ac53.js",
-    "runtime-main.js.map": "/react-redux-fake-store/static/js/runtime-main.ad21ac53.js.map",
+    "main.js": "/react-redux-fake-store/static/js/main.ca7a8f2a.chunk.js",
+    "main.js.map": "/react-redux-fake-store/static/js/main.ca7a8f2a.chunk.js.map",
+    "runtime-main.js": "/react-redux-fake-store/static/js/runtime-main.facca2bb.js",
+    "runtime-main.js.map": "/react-redux-fake-store/static/js/runtime-main.facca2bb.js.map",
     "static/css/2.ccfd2b90.chunk.css": "/react-redux-fake-store/static/css/2.ccfd2b90.chunk.css",
     "static/js/2.d1f748b9.chunk.js": "/react-redux-fake-store/static/js/2.d1f748b9.chunk.js",
     "static/js/2.d1f748b9.chunk.js.map": "/react-redux-fake-store/static/js/2.d1f748b9.chunk.js.map",
     "static/js/3.acff6a91.chunk.js": "/react-redux-fake-store/static/js/3.acff6a91.chunk.js",
     "static/js/3.acff6a91.chunk.js.map": "/react-redux-fake-store/static/js/3.acff6a91.chunk.js.map",
-    "static/js/4.1f0ffd08.chunk.js": "/react-redux-fake-store/static/js/4.1f0ffd08.chunk.js",
-    "static/js/4.1f0ffd08.chunk.js.map": "/react-redux-fake-store/static/js/4.1f0ffd08.chunk.js.map",
+    "static/js/4.9169ba46.chunk.js": "/react-redux-fake-store/static/js/4.9169ba46.chunk.js",
+    "static/js/4.9169ba46.chunk.js.map": "/react-redux-fake-store/static/js/4.9169ba46.chunk.js.map",
     "static/js/5.0c7c55bc.chunk.js": "/react-redux-fake-store/static/js/5.0c7c55bc.chunk.js",
     "static/js/5.0c7c55bc.chunk.js.map": "/react-redux-fake-store/static/js/5.0c7c55bc.chunk.js.map",
     "static/js/6.8c2f76e6.chunk.js": "/react-redux-fake-store/static/js/6.8c2f76e6.chunk.js",
@@ -29,9 +29,9 @@
     "static/media/index.css": "/react-redux-fake-store/static/media/poppins-latin-ext-400-normal.4f38b433.woff2"
   },
   "entrypoints": [
-    "static/js/runtime-main.ad21ac53.js",
+    "static/js/runtime-main.facca2bb.js",
     "static/css/2.ccfd2b90.chunk.css",
     "static/js/2.d1f748b9.chunk.js",
-    "static/js/main.59ad399c.chunk.js"
+    "static/js/main.ca7a8f2a.chunk.js"
   ]
 }
