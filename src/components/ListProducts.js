@@ -42,7 +42,7 @@ const Wrapper = styled.div`
     transition: var(--transition);
     transform: scale(1);
     &:hover {
-      box-shadow: 0 0 1rem 1rem var(--bg-color);
+      box-shadow: 0 0 1rem 1rem var(--gray-color-2);
     }
 
     img {

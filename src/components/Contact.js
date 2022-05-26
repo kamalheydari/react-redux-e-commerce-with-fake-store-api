@@ -1,8 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-//? Helper
-import Screen from "../styles/Screen";
+
 
 //? Components
 import { Typography } from ".";
@@ -25,7 +24,6 @@ const Contact = () => {
     </Wrapper>
   );
 };
-
 
 const Wrapper = styled.section`
   display: flex;
@@ -61,6 +59,7 @@ const Wrapper = styled.section`
       border-radius: var(--radius);
       padding: 0.5rem 1rem;
       transition: var(--transition);
+      color: var(--blue-color-3);
 
       &:hover {
         color: var(--white-color);

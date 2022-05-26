@@ -42,7 +42,11 @@ const CartPage = () => {
             <Button variant='primary'>
               <Link to='/products'>Buy more</Link>
             </Button>
-            <Button variant='secondary' onClick={() => dispatch(clearCart())}>
+            <Button
+              variant='secondary'
+              className='clear-btn'
+              onClick={() => dispatch(clearCart())}
+            >
               Clear cart
             </Button>
           </div>
@@ -77,6 +81,10 @@ const Wrapper = styled.section`
     align-items: center;
     justify-content: space-between;
     padding: 0.5rem 1rem;
+  }
+
+  .clear-btn {
+    padding: 0.75rem 1.5rem;
   }
 `;
 export default CartPage;
