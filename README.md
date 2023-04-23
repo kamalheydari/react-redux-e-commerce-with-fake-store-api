@@ -1,4 +1,4 @@
-# React-Redux Fake Store 
+# React Redux e-commerce With Fake Store Api
 
 ## Features:
 Search, filter, and sort functions
